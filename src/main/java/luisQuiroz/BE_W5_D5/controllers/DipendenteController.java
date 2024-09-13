@@ -30,6 +30,11 @@ public class DipendenteController {
         return this.dipendenteService.findAllDipendenti(page, size);
     }
 
+    @GetMapping("/{dipendenteId}")
+    public Dipendente findById(@PathVariable UUID dipendenteId){
+        return this.dipendenteService.findById(dipendenteId);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public DipendenteRespDTO saveNew(@RequestBody @Validated DipendenteDTO body, BindingResult validationRes){
@@ -43,5 +48,16 @@ public class DipendenteController {
         }
 
         return new DipendenteRespDTO(this.dipendenteService.save(body).getId());
+    }
+
+    @PutMapping("/{dipendenteId}")
+    public Dipendente findAndUpdate(@PathVariable UUID dipendenteId, @RequestBody DipendenteDTO body){
+        return this.dipendenteService.findAndUpdate(dipendenteId, body);
+    }
+
+    @DeleteMapping("/{dipendenteId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void findAndDelete(@PathVariable UUID dipendenteId) {
+        this.dipendenteService.findAndDelete(dipendenteId);
     }
 }

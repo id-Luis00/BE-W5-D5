@@ -10,7 +10,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Prenotazione {
 
@@ -30,4 +29,10 @@ public class Prenotazione {
     @JoinColumn(name = "viaggio_id")
     private Viaggio viaggio;
 
+    public Prenotazione(LocalDate dateBooking, String preferences, Dipendente dipendente, Viaggio viaggio) {
+        this.dateBooking = dateBooking;
+        this.preferences = preferences;
+        this.dipendente = dipendente;
+        this.viaggio = viaggio;
+    }
 }

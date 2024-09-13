@@ -44,11 +44,13 @@ public class PrenotazioneService {
         // 1.1 controllare l'esistenza del dipendente
         Dipendente foundDipendente = this.dipendenteService.findById(dipendenteId);
 
-        // 1.1.1 un dipendente non può avere due prenotazioni lo stesso giorno (ho capito finalmente queste derived queries :))) )
-        if (this.prenotazioneRepository.existsByDateBookingAndDipendenteId(body.dateBooking(), dipendenteId)) throw new BadRequestException("Il dipendente " + dipendenteId + " ha già una prenotazione per il giorno " + body.dateBooking());
 
         // 1.2 controllare l'esistenza del viaggio
         Viaggio viaggioFound = this.viaggioService.findById(viaggioId);
+
+        // 1.3 un dipendente non può avere due prenotazioni lo stesso giorno (ho capito finalmente queste derived queries :))) )
+        if (this.prenotazioneRepository.existsByViaggioDateAndDipendenteId(viaggioFound.getDate(), dipendenteId)) throw new BadRequestException("Il dipendente " + dipendenteId + " ha già una prenotazione per il giorno " + viaggioFound.getDate());
+
 
         // 2. creare una prenotazione
         Prenotazione newPrenotazione = new Prenotazione(body.dateBooking(), body.preferences(), foundDipendente, viaggioFound);

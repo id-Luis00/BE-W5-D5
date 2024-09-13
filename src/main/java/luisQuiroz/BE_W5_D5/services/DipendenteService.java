@@ -3,6 +3,7 @@ package luisQuiroz.BE_W5_D5.services;
 
 
 
+import com.cloudinary.utils.ObjectUtils;
 import luisQuiroz.BE_W5_D5.entities.Dipendente;
 import luisQuiroz.BE_W5_D5.exceptions.BadRequestException;
 import luisQuiroz.BE_W5_D5.exceptions.NotFoundException;
@@ -14,7 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -66,5 +69,8 @@ public class DipendenteService {
     public void findAndDelete(UUID dipendenteId) {
         this.dipendenteRepository.deleteById(dipendenteId);
     }
+
+
+
 
 }

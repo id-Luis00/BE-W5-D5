@@ -12,7 +12,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Entity
 public class Viaggio {
@@ -27,4 +26,10 @@ public class Viaggio {
 
     @Enumerated(EnumType.STRING)
     private StatoViaggio statoViaggio;
+
+    public Viaggio(String destionation, LocalDate date, StatoViaggio statoViaggio) {
+        this.destionation = destionation;
+        this.date = date;
+        this.statoViaggio = statoViaggio;
+    }
 }

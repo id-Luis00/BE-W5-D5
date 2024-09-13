@@ -11,7 +11,6 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Entity
 public class Dipendente {
@@ -26,4 +25,11 @@ public class Dipendente {
     private String name;
     private String surname;
     private String email;
+
+    public Dipendente(String username, String name, String surname, String email) {
+        this.username = username;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+    }
 }
